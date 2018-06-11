@@ -1,2 +1,1 @@
-# CSharpStart
-Projects for starting C#
+My projects
