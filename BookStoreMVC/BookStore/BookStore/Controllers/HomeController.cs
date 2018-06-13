@@ -12,6 +12,7 @@ namespace BookStore.Controllers
     // создаем контекст данных
     BookContext db = new BookContext();
 
+    //Это метод  действий или просто действия контроллера
     public ActionResult Index()
     {
       // получаем из бд все объекты Book      
@@ -24,7 +25,7 @@ namespace BookStore.Controllers
 
 
     [HttpGet]
-    public ActionResult Buy(int id)
+    public ActionResult Buy(int? id)
     {
       ViewBag.BookId = id;
       return View();
@@ -33,13 +34,21 @@ namespace BookStore.Controllers
     [HttpPost]
     public string Buy(Purchase purchase)
     {
-      purchase.Date = DateTime.Now;
+      //Обратите внимание на поля ввода <input type="text" name="Person" /> и <input type="text" name="Address" />. 
+      //Значение их атрибута name соответствуют именам свойств модели Purchase. 
+
+      purchase.Date = getToday();
       // добавляем информацию о покупке в базу данных
       db.Purchases.Add(purchase);
       // сохраняем в бд все изменения
       //принимает переданную ему в запросе POST модель purchase и добавляет ее в базу данных.
       db.SaveChanges();
       return "Спасибо," + purchase.Person + ", за покупку!";
+    }
+
+    private DateTime getToday()
+    {
+      return DateTime.Now;
     }
   }
 }
