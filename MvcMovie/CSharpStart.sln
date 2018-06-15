@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2018
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcMovie", "MvcMovie\MvcMovie.csproj", "{9214C4EF-E4E8-45E0-A2E3-A26252CB6E5B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookStore", "..\BookStoreMVC\BookStore\BookStore\BookStore.csproj", "{F85E7F38-C9FC-4690-8D6C-2C2305F2DBA0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9214C4EF-E4E8-45E0-A2E3-A26252CB6E5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9214C4EF-E4E8-45E0-A2E3-A26252CB6E5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9214C4EF-E4E8-45E0-A2E3-A26252CB6E5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9214C4EF-E4E8-45E0-A2E3-A26252CB6E5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F85E7F38-C9FC-4690-8D6C-2C2305F2DBA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F85E7F38-C9FC-4690-8D6C-2C2305F2DBA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F85E7F38-C9FC-4690-8D6C-2C2305F2DBA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F85E7F38-C9FC-4690-8D6C-2C2305F2DBA0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {79648F63-4EA8-406E-97CD-302E2B21EC6B}
+	EndGlobalSection
+EndGlobal

@@ -19,6 +19,7 @@ namespace BookStore.Controllers
       IEnumerable<Book> books = db.Books;
       // передаем все объекты в динамическое свойство Books в ViewBag
       ViewBag.Books = books;
+      ViewBag.Triangle = new Triangle();
       // возвращаем представление
       return View();
     }

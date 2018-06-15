@@ -1,0 +1,13 @@
+﻿@model BookStore.Models.Triangle
+
+@{
+  ViewBag.Title = "Calculate Square of Triangle";
+}
+
+
+@using (Html.BeginForm("Square", "Home", FormMethod.Post))
+{
+  @Html.TextBoxFor(model => @model.Side)
+  @Html.ValidationMessageFor(model => model.Height)
+  <button type="submit">Посчитать</button>
+}
