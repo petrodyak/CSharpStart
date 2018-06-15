@@ -1,0 +1,7 @@
+﻿@model BookStore.Models.Triangle
+@using (Html.BeginForm("Index", "Geometry", FormMethod.Post))
+{
+@UserName  @Html.TextBoxFor(m => m.username)
+@Age : @Html.TextBoxFor(m => m.age)
+< input type = "submit" value = "Submit"/ >
+}
