@@ -41,9 +41,10 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+          @*The first argument to the ActionLink method is the link text to render (for example, <a>Edit Me</a>). The second argument is the name of the action method to invoke (In this case, the Edit action). The final argument is an anonymous object that generates the route data (in this case, the ID of 4).*@
+          @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+          @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+          @Html.ActionLink("Delete", "Delete", new { id = item.ID })
         </td>
     </tr>
 }
