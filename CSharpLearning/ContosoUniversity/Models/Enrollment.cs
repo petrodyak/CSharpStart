@@ -20,7 +20,7 @@ namespace ContosoUniversity.Models
         public int StudentID { get; set; }
         public Grade? Grade { get; set; }
 
-        public virtual Course Cource { get; set; }
+        public virtual Course Course { get; set; }
         public virtual Student Student { get; set; }
     }
 
