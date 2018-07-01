@@ -11,7 +11,9 @@ namespace ContosoUniversity.DAL
 {
     public class SchoolContext : DbContext
     {
-        public SchoolContext() : base("SchoolContext") { }
+        public SchoolContext() : base("SchoolContext") {
+            this.Configuration.LazyLoadingEnabled = false;
+        }
         /*This code creates a DbSet property for each entity set. 
          * In Entity Framework terminology, an entity set typically 
          * corresponds to a database table, and an entity corresponds to a row in the table.*/
