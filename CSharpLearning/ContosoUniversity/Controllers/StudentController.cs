@@ -17,48 +17,62 @@ namespace ContosoUniversity.Controllers
 
         // GET: Student
         public ActionResult Index(string sortOrder, string searchString)
-        {
-            ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "lastName_desc" : "";
-            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-            ViewBag.FirstNameSortParm = sortOrder == "firstName" ? "firstName_desc" : "firstName";
-            var students = from s in db.Students
-                           select s;
+    {
+      ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "lastName_desc" : "";
+      ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+      ViewBag.FirstNameSortParm = sortOrder == "firstName" ? "firstName_desc" : "firstName";
+      var students = from s in db.Students
+                     select s;
 
-            //Filter by search string 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                students = students.Where(s => s.LastName.Contains(searchString) || s.FirstMidName.Contains(searchString));
-            }
+      //Filter by search string 
+      students = StudentFilterBySearchString(searchString, students);
 
+      students = StudentSort(sortOrder, students);
 
-            switch (sortOrder)
-            {
-                case "lastName_desc":
-                    students = students.OrderByDescending(s => s.LastName);
-                    break;
-                case "Date":
-                    students = students.OrderBy(s => s.EnrollmentDate);
-                    break;
-                case "date_desc":
-                    students = students.OrderByDescending(s => s.EnrollmentDate);
-                    break;
-                case "firstName":
-                    students = students.OrderBy(s => s.FirstMidName);
-                    break;
-                case "firstName_desc":
-                    students = students.OrderByDescending(s => s.FirstMidName);
-                    break;
-                default:
-                    students = students.OrderBy(s => s.LastName);
-                    break;
-            }
-            /*The query is not executed until you convert the IQueryable object into a collection by calling a method such as ToList. 
-             *Therefore, this code results in a single query that is not executed until the return View statement.*/
-            return View(students.ToList());
-        }
+      /*The query is not executed until you convert the IQueryable object into a collection by calling a method such as ToList. 
+       *Therefore, this code results in a single query that is not executed until the return View statement.*/
+      return View(students.ToList());
+    }
 
-        // GET: Student/Details/5
-        public ActionResult Details(int? id)
+    private static IQueryable<Student> StudentFilterBySearchString(string searchString, IQueryable<Student> students)
+    {
+      if (!String.IsNullOrEmpty(searchString))
+      {
+        students = students.Where(s => s.LastName.Contains(searchString) || s.FirstMidName.Contains(searchString));
+      }
+
+      return students;
+    }
+
+    private static IQueryable<Student> StudentSort(string sortOrder, IQueryable<Student> students)
+    {
+      switch (sortOrder)
+      {
+        case "lastName_desc":
+          students = students.OrderByDescending(s => s.LastName);
+          break;
+        case "Date":
+          students = students.OrderBy(s => s.EnrollmentDate);
+          break;
+        case "date_desc":
+          students = students.OrderByDescending(s => s.EnrollmentDate);
+          break;
+        case "firstName":
+          students = students.OrderBy(s => s.FirstMidName);
+          break;
+        case "firstName_desc":
+          students = students.OrderByDescending(s => s.FirstMidName);
+          break;
+        default:
+          students = students.OrderBy(s => s.LastName);
+          break;
+      }
+
+      return students;
+    }
+
+    // GET: Student/Details/5
+    public ActionResult Details(int? id)
         {
             if (id == null)
             {
