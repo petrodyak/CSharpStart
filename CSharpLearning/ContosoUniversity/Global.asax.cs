@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using ContosoUniversity.DAL;
+using System.Data.Entity.Infrastructure.Interception;
 
 namespace ContosoUniversity
 {
@@ -16,6 +18,10 @@ namespace ContosoUniversity
       FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
       RouteConfig.RegisterRoutes(RouteTable.Routes);
       BundleConfig.RegisterBundles(BundleTable.Bundles);
+      //These lines of code are what causes your interceptor code
+      //to be run when Entity Framework sends queries to the database.
+      DbInterception.Add(new SchoolInterceptorTransientErrors());
+      DbInterception.Add(new SchoolInterceptorLogging());
     }
   }
 }
