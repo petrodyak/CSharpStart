@@ -177,9 +177,9 @@
     </Compile>
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\Logger.cs" />
-    <Compile Include="Migrations\201806240838221_Initial.cs" />
-    <Compile Include="Migrations\201806240838221_Initial.Designer.cs">
-      <DependentUpon>201806240838221_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201807270816594_InitialCreate.cs" />
+    <Compile Include="Migrations\201807270816594_InitialCreate.Designer.cs">
+      <DependentUpon>201807270816594_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
@@ -254,8 +254,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806240838221_Initial.resx">
-      <DependentUpon>201806240838221_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201807270816594_InitialCreate.resx">
+      <DependentUpon>201807270816594_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
