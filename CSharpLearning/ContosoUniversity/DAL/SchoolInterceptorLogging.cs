@@ -9,7 +9,6 @@ using System.Data.Entity.SqlServer;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Reflection;
-using System.Linq;
 using ContosoUniversity.Logging;
 
 namespace ContosoUniversity.DAL

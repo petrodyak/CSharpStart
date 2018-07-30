@@ -8,7 +8,7 @@ namespace ContosoUniversity.Migrations
     public override void Up()
     
     {
-     //Clean al lobjects
+     //Clean all objects
        Down();
 
       CreateTable(
@@ -16,11 +16,12 @@ namespace ContosoUniversity.Migrations
        c => new
        {
          CourseID = c.Int(nullable: false),
-         Title = c.String(),
+         Title = c.String(maxLength:255),
          Credits = c.Int(nullable: false),
        })
        .PrimaryKey(t => t.CourseID);
 
+      AlterColumn("dbo.Course", "Title", c => c.String(maxLength: 200));
 
       CreateTable(
           "dbo.Enrollment",
@@ -42,12 +43,18 @@ namespace ContosoUniversity.Migrations
           c => new
           {
             ID = c.Int(nullable: false, identity: true),
-            LastName = c.String(),
-            FirstMidName = c.String(),
+            LastName = c.String(maxLength:50),
+            FirstMidName = c.String(maxLength: 50),
             EnrollmentDate = c.DateTime(nullable: false),
-            EmailAddress = c.String(),
+            EmailAddress = c.String(maxLength: 50),
           })
           .PrimaryKey(t => t.ID);
+
+      RenameColumn(table: "dbo.Student", name: "FirstMidName", newName: "FirstName");
+
+      AlterColumn("dbo.Student", "FirstName", c => c.String(nullable: false, maxLength: 45));
+      AlterColumn("dbo.Student", "LastName", c => c.String(nullable: false, maxLength: 45));
+      AlterColumn("dbo.Student", "EmailAddress", c => c.String(nullable: false, maxLength: 40));
 
     }
 

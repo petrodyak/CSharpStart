@@ -181,9 +181,16 @@
     <Compile Include="Migrations\201807270816594_InitialCreate.Designer.cs">
       <DependentUpon>201807270816594_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807300831587_ComplexDataModel.cs" />
+    <Compile Include="Migrations\201807300831587_ComplexDataModel.Designer.cs">
+      <DependentUpon>201807300831587_ComplexDataModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Enrollment.cs" />
+    <Compile Include="Models\Instructor.cs" />
+    <Compile Include="Models\OfficeAssignment.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\EnrollmentDateGroup.cs" />
@@ -212,7 +219,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -256,6 +265,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201807270816594_InitialCreate.resx">
       <DependentUpon>201807270816594_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807300831587_ComplexDataModel.resx">
+      <DependentUpon>201807300831587_ComplexDataModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
