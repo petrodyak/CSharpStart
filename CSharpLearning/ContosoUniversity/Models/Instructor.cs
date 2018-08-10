@@ -20,7 +20,7 @@ namespace ContosoUniversity.Models
 
     [Display(Name = "Full Name")]
     public string FullName
-    {
+    { 
       get { return LastName + " " + FirstMidName; }
     }
 
