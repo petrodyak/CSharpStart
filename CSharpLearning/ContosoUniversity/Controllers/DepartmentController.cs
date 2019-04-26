@@ -175,8 +175,12 @@ namespace ContosoUniversity.Controllers
         }
 
         // GET: Department/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        //The method accepts an optional parameter "concurrencyError" that indicates whether the page is being redisplayed 
+        //after a concurrency error. If this flag is true, 
+        //an error message is sent to the view using a ViewBag property
+        public async Task<ActionResult> Delete(int? id, bool? concurrencyError)
         {
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -184,20 +188,47 @@ namespace ContosoUniversity.Controllers
             Department department = await db.Departments.FindAsync(id);
             if (department == null)
             {
+                if (concurrencyError.GetValueOrDefault())
+                {
+                    return RedirectToAction("Index");
+                }
                 return HttpNotFound();
             }
+
+            if (concurrencyError.GetValueOrDefault())
+            {
+                ViewBag.ConcurrencyErrorMessage = "The record you attempted to delete "
+                    + "was modified by another user after you got the original values. "
+                    + "The delete operation was canceled and the current values in the "
+                    + "database have been displayed. If you still want to delete this "
+                    + "record, click the Delete button again. Otherwise "
+                    + "click the Back to List hyperlink.";
+            }
+
             return View(department);
         }
 
         // POST: Department/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> Delete(Department department)
         {
-            Department department = await db.Departments.FindAsync(id);
-            db.Departments.Remove(department);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            try {
+                db.Entry(department).State = EntityState.Deleted;
+                await db.SaveChangesAsync();
+                return RedirectToAction("index");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return RedirectToAction("Delete", new { concurrencyError = true, id = department.DepartmentID });
+            }
+            catch (DataException /* dex */)
+            {
+                //Log the error (uncomment dex variable name after DataException and add a line here to write a log.
+                ModelState.AddModelError(string.Empty, "Unable to delete. Try again, and if the problem persists contact your system administrator.");
+                return View(department);
+            }
+
         }
 
         protected override void Dispose(bool disposing)
