@@ -1,0 +1,38 @@
+﻿@{
+    /*мы указываем, что мастер-страница не будет применяться к этому представлению. */
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>Книжный магазин</title>
+</head>
+<body>
+  <div>
+    <h3>Распродажа книг</h3>
+    <table>
+      <tr>
+        <td><p>Название книги</p></td>
+        <td><p>Автор</p></td>
+        <td><p>Цена</p></td>
+        <td></td>
+      </tr>
+      @foreach (var b in ViewBag.Books)
+      {
+      <tr>
+        @*получаем значение свойства каждого элемента с помощью синтаксиса Razor: @b.Name и помещаем его в ячейку таблицы.*@
+        <td><p>@b.Name</p></td>
+        <td><p>@b.Author</p></td>
+        <td><p>@b.Price</p></td>
+        @*При нажатии на эту ссылку методу Buy контроллера HomeController будет отправляться запрос, в котором вместо @b.Id будет указан id книги*@
+        @*Путь /Home/Buy означает, что мы будем обращаться к методу Buy контроллера HomeController. 
+        А добавление в запрос параметра /Home/Buy/@b.Id, означает, что такой метод может принимать параметр.*@
+        <td><p><a href="/Home/Buy/@b.Id">Купить</a></p></td>
+      </tr>
+      }
+    </table>
+  </div>
+</body>
+</html>
